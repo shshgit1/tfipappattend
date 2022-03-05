@@ -1,0 +1,20 @@
+<table border="1">
+  <tr>
+  <th>Staff Id</th>
+  <th>Name</th>
+  <th>Dept</th>
+  <th>View timesheet</th>
+  <th>Remove Staff</th>
+
+  </tr>
+  <tr *ngFor="let s of staff">
+    <td>{{s.staffid}}</td>
+    <td>{{s.name}}</td>
+    <td>{{s.department}}</td>
+    <td><a [routerLink]="['../timesheet/',s.staffid]">View timesheet</a></td>
+    <td><button type="submit" (click)="remove(s.staffid)">Remove Staff</button></td>
+
+  </tr>
+</table>
+<p></p>
+<button type="submit" [routerLink]="['../']">Back</button>

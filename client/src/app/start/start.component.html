@@ -1,0 +1,9 @@
+<div align="right"><a [routerLink]="['auth']">Admin</a></div>
+<p></p>
+<form [formGroup]="groupedForm">
+  Key in your staff ID: <input type="text" formControlName="StaffIdinput">
+  <p></p>
+
+  <button type="submit" (click)="clockin()">Clock in</button> &nbsp;
+  <button type="submit" (click)="clockout()">Clock out</button>
+</form>

@@ -1,0 +1,56 @@
+<form [formGroup]="groupedForm">
+  <table>
+  <th>Start Date:</th>
+  <th>End date:</th>
+  <tr>
+
+    <td>
+  <mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="pick" formControlName="startD">
+      <mat-datepicker-toggle matSuffix [for]="pick">
+        <mat-datepicker #pick ></mat-datepicker>
+      </mat-datepicker-toggle>
+  </mat-form-field>
+    </td>
+    <td>
+  <mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="pick1" formControlName="endD">
+      <mat-datepicker-toggle matSuffix [for]="pick1">
+        <mat-datepicker #pick1 ></mat-datepicker>
+      </mat-datepicker-toggle>
+  </mat-form-field>
+    </td>
+  </tr>
+
+  <tr>
+    <td><button type="submit" (click)="runFilter()">Filter</button></td>
+    <td><button type="button" [routerLink]="['../../']">Back</button></td>
+  </tr>
+</table>
+</form>
+
+<p></p>
+
+<table border="1">
+  <tr>
+  <th>Staff Id</th>
+  <th>Name</th>
+  <th>Dept</th>
+  <th>Date</th>
+  <th>Clock in</th>
+  <th>Clock out</th>
+
+  </tr>
+  <tr *ngFor="let t of timeSheetOutput">
+    <td>{{t.staffid}}</td>
+    <td>{{t.name}}</td>
+    <td>{{t.department}}</td>
+    <td>{{t.Date}}</td>
+    <td>{{t.clock_in}}</td>
+    <td>{{t.clock_out}}</td>
+
+  </tr>
+</table>
+
+
+

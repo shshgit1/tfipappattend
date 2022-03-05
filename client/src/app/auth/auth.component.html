@@ -1,0 +1,9 @@
+<p>auth works!</p>
+<form [formGroup]="groupedForm">
+User Id: <input type="text" formControlName="Username"><br>
+Password: <input type="password" formControlName="Password"><br>
+<button type="submit" (click)="onLogin()">Log in</button>
+</form>
+<p>
+  {{responsefromspring}}
+</p>
