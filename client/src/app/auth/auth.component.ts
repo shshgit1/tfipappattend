@@ -37,7 +37,7 @@ export class AuthComponent implements OnInit {
         this.svc.saveToken(result['token']);
       })
       .then(redirect=>this.router.navigate(['admin']))
-      .catch(err=>alert("Wong username and/or passwor!"))
+      .catch(err=>alert("Wong username and/or password!"))
 
 }
 }

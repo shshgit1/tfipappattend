@@ -1,0 +1,18 @@
+
+<h3>Have any issues? Raise a support enquiry via this form below and we will get back to you.</h3>
+
+<form [formGroup]="groupedForm">
+
+  Your Name: <input type="text" formControlName="Name">
+  <p></p>
+  Your Email: <input type="text" formControlName="Email">
+  <p></p>
+  Subject: <input type="text" formControlName="Subject">
+  <p></p>
+  Enquiry: <textarea formControlName="Enquiry"></textarea>
+  <p></p>
+  <button type="submit" (click)="contact()">Submit Enquiry</button>
+  <p></p>
+  <button type="submit" [routerLink]="['../']">Back</button>
+
+</form>

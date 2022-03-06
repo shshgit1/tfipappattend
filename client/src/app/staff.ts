@@ -24,3 +24,12 @@ constructor(
   public password:string
 ){}
   }
+
+  export class contactsupport{
+    constructor(
+      public name:string,
+      public email: string,
+      public subject: string,
+      public enquiry: string
+    )   {}
+  }

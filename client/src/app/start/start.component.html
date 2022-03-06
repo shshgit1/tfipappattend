@@ -1,4 +1,6 @@
-<div align="right"><a [routerLink]="['auth']">Admin</a></div>
+<div><a [routerLink]="['auth']">Admin</a> &nbsp;
+<a [routerLink]="['contactsupport']">Contact Support</a>
+</div>
 <p></p>
 <form [formGroup]="groupedForm">
   Key in your staff ID: <input type="text" formControlName="StaffIdinput">
@@ -7,3 +9,7 @@
   <button type="submit" (click)="clockin()">Clock in</button> &nbsp;
   <button type="submit" (click)="clockout()">Clock out</button>
 </form>
+
+<p></p>
+<h3>Current 10 year treasury yield: <b>{{currentInterestRate}}%</b></h3>
+

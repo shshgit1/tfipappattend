@@ -11,6 +11,7 @@ export class StartComponent implements OnInit {
   groupedForm:FormGroup;
   StaffIdInp=new FormControl();
   RemarksInp=new FormControl();
+  currentInterestRate:string="";
 
 
   constructor(private fb:FormBuilder, private attsvc:AttendService) {
@@ -23,6 +24,7 @@ export class StartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.attsvc.getTenYearYield().then((result: string)=>this.currentInterestRate=result)
   }
 
   clockin(){

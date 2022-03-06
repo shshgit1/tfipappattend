@@ -24,6 +24,9 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS,
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
 import { AuthComponent } from './auth/auth.component';
+import { ContactsupportComponent } from './contactsupport/contactsupport.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 const appRoutes: Routes = [
@@ -32,7 +35,8 @@ const appRoutes: Routes = [
   {path: 'admin/listall', component:ListallComponent},
   {path : 'admin', component: AdminComponent},
   {path :'admin/timesheet/:staffid', component: TimesheetComponent},
-  {path: 'auth', component: AuthComponent}
+  {path: 'auth', component: AuthComponent},
+  {path: 'contactsupport', component:ContactsupportComponent}
 
 ]
 
@@ -45,6 +49,7 @@ const appRoutes: Routes = [
     AdminComponent,
     TimesheetComponent,
     AuthComponent,
+    ContactsupportComponent,
 
   ],
   imports: [
@@ -57,7 +62,13 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
 
   providers: [AttendService,

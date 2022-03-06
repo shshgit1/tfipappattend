@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, lastValueFrom, throwError } from 'rxjs';
-import {adminuser, staff, timesheet} from "./staff";
+import { catchError, lastValueFrom, Observable, throwError } from 'rxjs';
+import {adminuser, contactsupport, staff, timesheet} from "./staff";
 @Injectable({
   providedIn: 'root'
 })
@@ -89,6 +89,16 @@ export class AttendService {
   signOut(): void {
     window.sessionStorage.clear();
     this.router.navigate(['']);
+  }
+
+  ContactSupport(contactsupport:any){
+    return lastValueFrom(this.http.post('http://localhost:8080/attendance/contactus', contactsupport))
+  }
+
+  getTenYearYield():any{
+    return lastValueFrom(
+      this.http.get<any>("http://localhost:8080/attendance/getInterest")
+    )
   }
 
 }
