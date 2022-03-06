@@ -5,13 +5,15 @@
 
   Your Name: <input type="text" formControlName="Name">
   <p></p>
-  Your Email: <input type="text" formControlName="Email">
+  Your Email: <input type="text" formControlName="Email"> <div *ngIf="EmailInput.hasError('email')">{{invalidemail}}</div>
   <p></p>
   Subject: <input type="text" formControlName="Subject">
   <p></p>
   Enquiry: <textarea formControlName="Enquiry"></textarea>
   <p></p>
-  <button type="submit" (click)="contact()">Submit Enquiry</button>
+
+  <p></p>
+  <button type="submit" [disabled]="groupedForm.invalid" (click)="contact()">Submit Enquiry</button>
   <p></p>
   <button type="submit" [routerLink]="['../']">Back</button>
 

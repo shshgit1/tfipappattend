@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AttendService } from '../attend.service';
 import { contactsupport } from '../staff';
@@ -13,10 +13,12 @@ export class ContactsupportComponent implements OnInit {
 
   groupedForm:FormGroup;
 
-  EmailInput=new FormControl();
-  SubjectInput=new FormControl();
-  EnquiryInput=new FormControl();
-  NameInput=new FormControl();
+  invalidemail:string="Please enter a valid email address";
+
+  EmailInput=new FormControl('',[Validators.required,Validators.email]);
+  SubjectInput=new FormControl('',[Validators.required]);
+  EnquiryInput=new FormControl('',[Validators.required]);
+  NameInput=new FormControl('',[Validators.required]);
 
   constructor(private fb:FormBuilder, private svc:AttendService, private router:Router) {
     this.groupedForm=this.fb.group(

@@ -35,7 +35,8 @@ public void clockin(String staffid){
     String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
     template.update
-    ("insert into timelog(staff_id, Date, clock_in) values ('"+staffid+"','"+todayDate+"','"+timeStamp+"')");
+    ("insert into timelog(staff_id, Date, clock_in) values (?,?,?)",staffid,todayDate,timeStamp);
+    //("insert into timelog(staff_id, Date, clock_in) values ('"+staffid+"','"+todayDate+"','"+timeStamp+"')");
 
 }
 
@@ -44,7 +45,8 @@ public void clockout(String staffid){
     String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     
     template.update
-    ("update timelog set clock_out = '"+timeStamp+"' where Date = '"+todayDate+"' and staff_id='"+staffid+"'");
+    ("update timelog set clock_out = ? where Date = ? and staff_id=?",timeStamp,todayDate,staffid);
+    //("update timelog set clock_out = '"+timeStamp+"' where Date = '"+todayDate+"' and staff_id='"+staffid+"'");
 }
 
 public List<Staff> showallStaff(){
@@ -61,7 +63,7 @@ public List<Staff> showallStaff(){
 public List<timeSheet> genTimesheet(String staffid){
     List<timeSheet> ts=new LinkedList<>();
     SqlRowSet srs=template.queryForRowSet
-    ("select * from staff left join timelog on staff.staff_id=timelog.staff_id  where staff.staff_id='"+staffid+"'");
+    ("select * from staff left join timelog on staff.staff_id=timelog.staff_id  where staff.staff_id= ?",staffid);
     
     while (srs.next()){
         timeSheet tsheet=new timeSheet();
@@ -74,7 +76,8 @@ public List<timeSheet> genTimesheet(String staffid){
 public List<timeSheet> filterTimesheet(String staffid, String startDate, String endDate){
     List<timeSheet> ts=new LinkedList<>();
     SqlRowSet srs=template.queryForRowSet
-    ("select * from staff left join timelog on staff.staff_id=timelog.staff_id where staff.staff_id='"+staffid+"' and Date between '"+startDate+"' and '"+endDate+"'");
+    ("select * from staff left join timelog on staff.staff_id=timelog.staff_id where staff.staff_id=? and Date between ? and ?", staffid,startDate,endDate);
+    //("select * from staff left join timelog on staff.staff_id=timelog.staff_id where staff.staff_id='"+staffid+"' and Date between '"+startDate+"' and '"+endDate+"'");
     
     while (srs.next()){
         timeSheet tsheet=new timeSheet();
@@ -89,7 +92,7 @@ public void removeStaffFromDb(String staffid){
     template.update("delete from staff where staff.staff_id ='"+staffid+"'");
 }
 
-//chuk code below
+
 public Optional<adminuser> findUserByName(String username) {
     final SqlRowSet rs = template.queryForRowSet("select * from user where username = ?", username);
     if (rs.next())

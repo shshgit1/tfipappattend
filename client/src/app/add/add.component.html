@@ -6,7 +6,7 @@
   <p></p>
   Dept: <input type="text" formControlName="Dept">
   <p></p>
-  <button type="submit" (click)="onAdd()">Add New Staff</button>
+  <button type="submit" [disabled]="groupedForm.invalid" (click)="onAdd()">Add New Staff</button>
   <p></p>
   <button type="submit" [routerLink]="['../']">Back</button>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttendService } from '../attend.service';
 import { staff } from '../staff';
 
@@ -12,9 +12,9 @@ import { staff } from '../staff';
 export class AddComponent implements OnInit {
 
   groupedForm:FormGroup;
-  NameInput=new FormControl();
-  DeptInput=new FormControl();
-  StaffIdInput=new FormControl();
+  NameInput=new FormControl('',[Validators.required]);
+  DeptInput=new FormControl('',[Validators.required]);
+  StaffIdInput=new FormControl('',[Validators.required]);
 
   showname:string='';
   showdept:string='';
