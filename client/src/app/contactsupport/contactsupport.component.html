@@ -3,18 +3,18 @@
 
 <form [formGroup]="groupedForm">
 
-  Your Name: <input type="text" formControlName="Name">
+  Your Name: <input type="text" class="form-control" formControlName="Name">
   <p></p>
-  Your Email: <input type="text" formControlName="Email"> <div *ngIf="EmailInput.hasError('email')">{{invalidemail}}</div>
+  Your Email: <input type="text" class="form-control" formControlName="Email"> <div *ngIf="EmailInput.hasError('email')">{{invalidemail}}</div>
   <p></p>
-  Subject: <input type="text" formControlName="Subject">
+  Subject: <input type="text" class="form-control" formControlName="Subject">
   <p></p>
-  Enquiry: <textarea formControlName="Enquiry"></textarea>
+  Enquiry: <textarea class="form-control" formControlName="Enquiry"></textarea>
   <p></p>
 
   <p></p>
-  <button type="submit" [disabled]="groupedForm.invalid" (click)="contact()">Submit Enquiry</button>
+  <button type="submit" class="btn btn-primary btn-lg" [disabled]="groupedForm.invalid" (click)="contact()">Submit Enquiry</button>
   <p></p>
-  <button type="submit" [routerLink]="['../']">Back</button>
+  <button type="submit" class="btn btn-primary btn-lg" [routerLink]="['../']">Back</button>
 
 </form>

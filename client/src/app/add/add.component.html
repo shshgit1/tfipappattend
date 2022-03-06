@@ -1,14 +1,14 @@
 <form [formGroup]="groupedForm">
 
-  Name: <input type="text" formControlName="Name">
+  Name: <input type="text" class="form-control" formControlName="Name">
   <p></p>
-  Staff ID: <input type="text" formControlName="StaffID">
+  Staff ID: <input type="text" class="form-control" formControlName="StaffID">
   <p></p>
-  Dept: <input type="text" formControlName="Dept">
+  Dept: <input type="text" class="form-control" formControlName="Dept">
   <p></p>
-  <button type="submit" [disabled]="groupedForm.invalid" (click)="onAdd()">Add New Staff</button>
+  <button type="submit" class="btn btn-primary btn-lg" [disabled]="groupedForm.invalid" (click)="onAdd()">Add New Staff</button>
   <p></p>
-  <button type="submit" [routerLink]="['../']">Back</button>
+  <button type="submit" class="btn btn-primary btn-lg" [routerLink]="['../']">Back</button>
 
 </form>
 <p>

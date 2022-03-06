@@ -1,9 +1,12 @@
-<p>auth works!</p>
+
 <form [formGroup]="groupedForm">
-User Id: <input type="text" formControlName="Username"><br>
-Password: <input type="password" formControlName="Password"><br>
-<button type="submit" (click)="onLogin()">Log in</button>
+User Id: <input type="text" class="form-control" formControlName="Username"><br>
+Password: <input type="password" class="form-control" formControlName="Password"><br>
+<p></p>
+<button type="submit" class="btn btn-primary btn-lg" (click)="onLogin()">Log in</button>
+&nbsp;
+<button type="submit" class="btn btn-primary btn-lg" [routerLink]="['../']">Back</button>
 </form>
 <p>
-  {{responsefromspring}}
 </p>
+

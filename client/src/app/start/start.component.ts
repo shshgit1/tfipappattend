@@ -41,7 +41,7 @@ export class StartComponent implements OnInit {
     }
   }
   )
-    .catch(err=>alert("Staff ID cannot be empty"))
+    .catch(err=>alert("Staff ID does not exist."))
 
     this.groupedForm.reset();
   }
