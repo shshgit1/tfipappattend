@@ -15,6 +15,7 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AgmCoreModule } from '@agm/core';
 
 
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDVS-RVgZeAx1p_o4bQ7w19WBlRiuFQWmU'}),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
