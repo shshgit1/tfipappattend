@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AttendService } from '../attend.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-start',
@@ -13,8 +14,10 @@ export class StartComponent implements OnInit {
   RemarksInp=new FormControl();
   currentInterestRate:string="";
 
+  lat!:any;
+  lng!:any;
 
-  constructor(private fb:FormBuilder, private attsvc:AttendService) {
+  constructor(private fb:FormBuilder, private attsvc:AttendService, private mapsAPILoader: MapsAPILoader,) {
     this.groupedForm=this.fb.group(
       {
       StaffIdinput:this.StaffIdInp,
@@ -24,7 +27,15 @@ export class StartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.attsvc.getTenYearYield().then((result: string)=>this.currentInterestRate=result)
+    if (navigator)
+    {
+    navigator.geolocation.getCurrentPosition( pos => {
+        this.lng = +pos.coords.longitude;
+        this.lat = +pos.coords.latitude;
+      });
+    }
+
+        this.attsvc.getTenYearYield().then((result: string)=>this.currentInterestRate=result)
   }
 
   clockin(){
@@ -61,5 +72,9 @@ export class StartComponent implements OnInit {
     .catch(err=>alert("Staff ID cannot be empty"))
     this.groupedForm.reset();
   }
+
+  get() {
+
+}
 
 }
