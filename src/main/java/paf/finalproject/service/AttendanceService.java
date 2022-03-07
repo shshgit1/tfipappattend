@@ -41,7 +41,7 @@ public class AttendanceService {
 
     @PostConstruct
 	public void init() {
-		String passphrase = "c8f46a13-f478-431c-9dc8-07db63be3cbe";
+		String passphrase = System.getenv("jwtkey");
 
 		try {
 			signKey = Keys.hmacShaKeyFor(passphrase.getBytes("UTF-8"));
