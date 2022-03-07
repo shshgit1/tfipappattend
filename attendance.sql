@@ -29,5 +29,3 @@ create table adminusers(
     password varchar(64) not null,
     primary key (username)
 )
-
-insert into adminusers(username,password) values('admin','adminpass')
