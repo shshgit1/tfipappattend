@@ -42,6 +42,7 @@ export class StartComponent implements OnInit {
     this.attsvc.clockin(this.groupedForm.value.StaffIdinput,this.lat,this.lng)
     .then((response)=>
     {
+      console.log(response);
       if(response=='OK')
     {
       alert("Succesfully clocked in");

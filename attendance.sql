@@ -28,4 +28,4 @@ create table adminusers(
     username varchar(64) not NULL,
     password varchar(64) not null,
     primary key (username)
-)
+);

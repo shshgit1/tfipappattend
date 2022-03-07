@@ -1,7 +1,9 @@
 package paf.finalproject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +23,11 @@ public class AttendanceRepo {
 @Autowired
 private JdbcTemplate template;
 
+Instant nowUtc = Instant.now();
+ZoneId asiaSingapore = ZoneId.of("Asia/Singapore");
+ZonedDateTime nowAsiaSingapore = ZonedDateTime.ofInstant(nowUtc, asiaSingapore);
+String todayDate=nowAsiaSingapore.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
 
 public void addStaff(Staff newSt){
     String name=newSt.getName();
@@ -31,26 +38,26 @@ public void addStaff(Staff newSt){
 }
 
 public void clockin(String staffid,String lat,String lng){
-    String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
-    String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    String timeStamp = ZonedDateTime.now().getHour() +":"+ ZonedDateTime.now().getMinute();
 
     String location=lat +" "+lng;
 
-    System.out.println("in service " +staffid +location);
-
-    template.update
-    ("insert into timelog(staff_id, Date, clock_in, clock_in_loc) values (?,?,?,?)",staffid,todayDate,timeStamp,location);
-    //("insert into timelog(staff_id, Date, clock_in) values ('"+staffid+"','"+todayDate+"','"+timeStamp+"')");
-
+    SqlRowSet srs=template.queryForRowSet("select * from timelog where (staff_id=?) and (Date=?)",staffid,todayDate);
+    if (!srs.next()){
+        template.update
+        ("insert into timelog(staff_id, Date, clock_in, clock_in_loc) values (?,?,?,?)",staffid,todayDate,timeStamp,location);
+    
+    }
+    
 }
 
 public void clockout(String staffid,String lat,String lng){
-    String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
-    String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    String timeStamp = ZonedDateTime.now().getHour() +":"+ ZonedDateTime.now().getMinute();
+
     String location=lat +" "+lng;
     template.update
     ("update timelog set clock_out = ?, clock_out_loc=? where Date = ? and staff_id=?",timeStamp,location, todayDate,staffid);
-    //("update timelog set clock_out = '"+timeStamp+"' where Date = '"+todayDate+"' and staff_id='"+staffid+"'");
+    
 }
 
 public List<Staff> showallStaff(){

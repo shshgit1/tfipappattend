@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +28,7 @@ import paf.finalproject.models.timeSheet;
 import paf.finalproject.service.AttendanceService;
 import paf.finalproject.service.EmailService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping(path="/attendance")
 public class AttendanceRestCont {
@@ -61,8 +60,10 @@ public class AttendanceRestCont {
         String lat=o.getJsonNumber("lat").toString();
         String lng=o.getJsonNumber("lat").toString();
         try{
-        attsvc.clockin(o.getString("staffid"),lat,lng);
-        return ResponseEntity.ok(HttpStatus.OK);
+            
+            attsvc.clockin(o.getString("staffid"),lat,lng);
+            
+            return ResponseEntity.ok(HttpStatus.OK);
         }
         catch(Exception e){
             return ResponseEntity.badRequest().body(null);

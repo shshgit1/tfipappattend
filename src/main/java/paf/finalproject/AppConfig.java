@@ -3,7 +3,6 @@ package paf.finalproject;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import paf.finalproject.service.JwtFilter;
@@ -11,11 +10,7 @@ import paf.finalproject.service.JwtFilter;
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
-	@Override
-	public void addCorsMappings(CorsRegistry reg) {
-		reg.addMapping("/attendance/**");
-	}
-
+	
 	@Bean
 	public FilterRegistrationBean<JwtFilter> registerJwtFilter(JwtFilter filter) {
 
