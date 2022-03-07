@@ -5,7 +5,9 @@
 <p></p>
 
 <form [formGroup]="groupedForm">
-  Key in your staff ID: <input type="text" formControlName="StaffIdinput">
+  <b>Key in your staff ID:</b> <input type="text" formControlName="StaffIdinput">
+  <p></p>
+  Do take note that you can clock in/out multiple times but only your first clock in and last clock in of the day will be recorded.
   <p></p>
 
   <button class="btn btn-primary btn-lg" type="submit" (click)="clockin()">Clock in</button> &nbsp;
