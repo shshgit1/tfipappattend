@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, lastValueFrom, Observable, throwError } from 'rxjs';
-import {adminuser, contactsupport, staff, timesheet} from "./staff";
+import {adminuser, clockinout, contactsupport, staff, timesheet} from "./staff";
 @Injectable({
   providedIn: 'root'
 })
@@ -20,12 +20,14 @@ export class AttendService {
     )
   }
 
-  clockin(staffid:string){
-    return lastValueFrom(this.http.post<string>("http://localhost:8080/attendance/clockin",staffid))
-
+  clockin(staffid:string,lat:any,lng:any){
+    let clockinobject=new clockinout(staffid,lat,lng);
+    return lastValueFrom(this.http.post<any>("http://localhost:8080/attendance/clockin",clockinobject))
   }
-  clockout(staffid:string){
-    return lastValueFrom(this.http.post<string>("http://localhost:8080/attendance/clockout",staffid))
+
+  clockout(staffid:string,lat:any,lng:any){
+    let clockoutobject=new clockinout(staffid,lat,lng);
+    return lastValueFrom(this.http.post<string>("http://localhost:8080/attendance/clockout",clockoutobject))
   }
 
   getStaffTimeSheet(staffid:string):Promise<timesheet[]>{

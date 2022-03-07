@@ -54,11 +54,11 @@ public class AttendanceService {
     public void addNewStaff(Staff newSt){
         repo.addStaff(newSt);
     }
-    public void clockin(String staffid){
-        repo.clockin(staffid);
+    public void clockin(String staffid, String lat, String lng){
+        repo.clockin(staffid,lat,lng);
     }
-    public void clockout(String staffid){
-        repo.clockout(staffid);
+    public void clockout(String staffid,String lat, String lng){
+        repo.clockout(staffid,lat,lng);
     }
     public List<Staff> showAllStaff(){
         return repo.showallStaff();

@@ -5,8 +5,17 @@ export class staff{
   public staffid:string,
   public department:string,
 ){}
-
 }
+
+export class clockinout{
+
+  constructor(
+  public staffid:string,
+  public lat:any,
+  public lng:any
+){}
+}
+
 
 export interface timesheet{
 
@@ -15,7 +24,9 @@ export interface timesheet{
   department:string;
   Date:string;
   clock_in:string;
-  clock_out:string
+  clock_out:string;
+  clock_in_location:string;
+  clock_out_location:string
 }
 
 export class adminuser{

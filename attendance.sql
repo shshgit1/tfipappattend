@@ -17,6 +17,8 @@ CREATE TABLE timelog (
     Date date DEFAULT NULL,
     clock_in varchar(64) DEFAULT 'Nil Entry',
     clock_out varchar(64) DEFAULT 'Nil Entry',
+    clock_in_loc varchar(64) DEFAULT 'Nil Entry',
+    clock_out_loc varchar(64) DEFAULT 'Nil Entry',
     PRIMARY KEY (ID),
     FOREIGN KEY (staff_id) REFERENCES staff (staff_id)
 

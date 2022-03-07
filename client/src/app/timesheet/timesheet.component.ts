@@ -35,7 +35,11 @@ export class TimesheetComponent implements OnInit {
   ngOnInit(): void {
     this.attsvc.checkifLoggedIn();
     this.IdOfStaff = this.aroute.snapshot.params['staffid'];
-    this.attsvc.getStaffTimeSheet(this.IdOfStaff).then(result=>this.timeSheetOutput=result);
+    this.attsvc.getStaffTimeSheet(this.IdOfStaff).then(result=>
+      {console.log("aaa>" + this.timeSheetOutput)
+        this.timeSheetOutput=result
+      }
+      );
 
   }
   runFilter():void{

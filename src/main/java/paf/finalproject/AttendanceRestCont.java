@@ -52,26 +52,38 @@ public class AttendanceRestCont {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PostMapping(path="clockin")
+    @PostMapping(path="clockin",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<HttpStatus> clockinEntry(@RequestBody String payload){
+        System.out.println(payload);
+        
+        JsonReader r=Json.createReader(new ByteArrayInputStream(payload.getBytes()));
+        JsonObject o=r.readObject();
+        String lat=o.getJsonNumber("lat").toString();
+        String lng=o.getJsonNumber("lat").toString();
         try{
-
-        attsvc.clockin(payload);
+        attsvc.clockin(o.getString("staffid"),lat,lng);
         return ResponseEntity.ok(HttpStatus.OK);
         }
         catch(Exception e){
             return ResponseEntity.badRequest().body(null);
-        }
+        } 
     } 
 
     @PostMapping(path="clockout")
     public ResponseEntity<HttpStatus> clockoutEntry(@RequestBody String payload){
+        
+        JsonReader r=Json.createReader(new ByteArrayInputStream(payload.getBytes()));
+        JsonObject o=r.readObject();
+
+        String lat=o.getJsonNumber("lat").toString();
+        String lng=o.getJsonNumber("lat").toString();
+
         try{
-        attsvc.clockout(payload);
+        attsvc.clockout(o.getString("staffid"),lat,lng);
         return ResponseEntity.ok(HttpStatus.OK);
         }
         catch(Exception e){
-            return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(null);
         }
     }
 

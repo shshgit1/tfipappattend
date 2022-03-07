@@ -39,7 +39,7 @@ export class StartComponent implements OnInit {
   }
 
   clockin(){
-    this.attsvc.clockin(this.groupedForm.value.StaffIdinput)
+    this.attsvc.clockin(this.groupedForm.value.StaffIdinput,this.lat,this.lng)
     .then((response)=>
     {
       if(response=='OK')
@@ -57,7 +57,7 @@ export class StartComponent implements OnInit {
     this.groupedForm.reset();
   }
   clockout(){
-    this.attsvc.clockout(this.groupedForm.value.StaffIdinput) .then((response)=>
+    this.attsvc.clockout(this.groupedForm.value.StaffIdinput,this.lat,this.lng) .then((response)=>
     {
       if(response=='OK')
     {
@@ -69,7 +69,7 @@ export class StartComponent implements OnInit {
     }
   }
   )
-    .catch(err=>alert("Staff ID cannot be empty"))
+    .catch(err=>alert("Staff ID does not exist."))
     this.groupedForm.reset();
   }
 

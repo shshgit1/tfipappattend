@@ -30,22 +30,26 @@ public void addStaff(Staff newSt){
     ("insert into staff(staff_id,name,dept) values('"+staffid+"','"+name+"','"+dept+ "')");
 }
 
-public void clockin(String staffid){
+public void clockin(String staffid,String lat,String lng){
     String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
     String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
+    String location=lat +" "+lng;
+
+    System.out.println("in service " +staffid +location);
+
     template.update
-    ("insert into timelog(staff_id, Date, clock_in) values (?,?,?)",staffid,todayDate,timeStamp);
+    ("insert into timelog(staff_id, Date, clock_in, clock_in_loc) values (?,?,?,?)",staffid,todayDate,timeStamp,location);
     //("insert into timelog(staff_id, Date, clock_in) values ('"+staffid+"','"+todayDate+"','"+timeStamp+"')");
 
 }
 
-public void clockout(String staffid){
+public void clockout(String staffid,String lat,String lng){
     String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
     String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-    
+    String location=lat +" "+lng;
     template.update
-    ("update timelog set clock_out = ? where Date = ? and staff_id=?",timeStamp,todayDate,staffid);
+    ("update timelog set clock_out = ?, clock_out_loc=? where Date = ? and staff_id=?",timeStamp,location, todayDate,staffid);
     //("update timelog set clock_out = '"+timeStamp+"' where Date = '"+todayDate+"' and staff_id='"+staffid+"'");
 }
 
