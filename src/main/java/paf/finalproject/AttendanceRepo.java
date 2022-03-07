@@ -38,7 +38,9 @@ public void addStaff(Staff newSt){
 }
 
 public void clockin(String staffid,String lat,String lng){
-    String timeStamp = ZonedDateTime.now().getHour() +":"+ ZonedDateTime.now().getMinute();
+
+
+    String timeStamp = nowAsiaSingapore.now().getHour() +":"+  nowAsiaSingapore.now().getMinute();
 
     String location=lat +" "+lng;
 
@@ -52,7 +54,9 @@ public void clockin(String staffid,String lat,String lng){
 }
 
 public void clockout(String staffid,String lat,String lng){
-    String timeStamp = ZonedDateTime.now().getHour() +":"+ ZonedDateTime.now().getMinute();
+
+
+    String timeStamp = nowAsiaSingapore.now().getHour() +":"+  nowAsiaSingapore.now().getMinute();
 
     String location=lat +" "+lng;
     template.update

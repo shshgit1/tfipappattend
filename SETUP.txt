@@ -1,0 +1,29 @@
+This is a simple employee attendance app using angular for front end, spring boot for back end and mySQL.
+
+APIs used
+1)Alpha Vantage for 10 year yield information.
+2)Google Maps Api for location tagging. Visit https://developers.google.com/maps for more info.
+3)Google App Api key for sending out emails.
+
+Environment Varibles
+1) JWTkey is used for authentication. Located in Heroku's config vars.
+2) Alpha Vantage api key stored in Heroky's config vars.
+
+SQL Schema is attendance.sql. Stored in DigitalOcean.
+
+Steps To Deploy
+1)download the whole repository and unzip
+2)check application.properties to ensure the settings are correct.
+3)double check the environment variables and api keys.
+4)in angular portion, run > ng build
+5)after ng build, copy the files from dist/client and paste in spring boot's \resources\static folder
+6)run mvn clean spring-boot:run in command line
+7)go to http://localhost:8080 in browser.
+
+Click on Admin and log in with the administrator account> 
+username: admin 
+password: adminpass
+
+Go ahead and play around with the functions like adding/deleting staff, viewing timesheet etc. 
+
+Test the clock in system by keying in the staff id in the home page.
