@@ -107,7 +107,7 @@ public class AttendanceService {
         queryParam("function", "TREASURY_YIELD").
         queryParam("interval", "daily").
         queryParam("maturity", "10year").
-		queryParam("apikey", "QXSMR1LEDWTJS0YR").
+		queryParam("apikey", System.getenv("avant")).
         toUriString(); 
 		
 		
