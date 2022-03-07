@@ -1,8 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, lastValueFrom, Observable, throwError } from 'rxjs';
-import {adminuser, clockinout, contactsupport, staff, timesheet} from "./staff";
+import { lastValueFrom } from 'rxjs';
+import {adminuser, clockinout, staff, timesheet} from "./staff";
 @Injectable({
   providedIn: 'root'
 })
@@ -11,48 +11,55 @@ export class AttendService {
   constructor(private http:HttpClient,private router:Router) { }
 
   postStaff(staffa:staff): Promise<any>{
-    return lastValueFrom(this.http.post<any>("http://localhost:8080/attendance/add",staffa))
-
+    //return lastValueFrom(this.http.post<any>("http://localhost:8080/attendance/add",staffa))
+    return lastValueFrom(this.http.post<any>("/attendance/add",staffa))
   }
   getallStaff():Promise<staff[]>{
     return lastValueFrom(
-      this.http.get<staff[]>("http://localhost:8080/attendance/listall")
+      //this.http.get<staff[]>("http://localhost:8080/attendance/listall")
+      this.http.get<staff[]>("/attendance/listall")
     )
   }
 
   clockin(staffid:string,lat:any,lng:any){
     let clockinobject=new clockinout(staffid,lat,lng);
-    return lastValueFrom(this.http.post<any>("http://localhost:8080/attendance/clockin",clockinobject))
+    //return lastValueFrom(this.http.post<any>("http://localhost:8080/attendance/clockin",clockinobject))
+    return lastValueFrom(this.http.post<any>("/attendance/clockin",clockinobject))
   }
 
   clockout(staffid:string,lat:any,lng:any){
     let clockoutobject=new clockinout(staffid,lat,lng);
-    return lastValueFrom(this.http.post<string>("http://localhost:8080/attendance/clockout",clockoutobject))
+    //return lastValueFrom(this.http.post<string>("http://localhost:8080/attendance/clockout",clockoutobject))
+    return lastValueFrom(this.http.post<string>("/attendance/clockout",clockoutobject))
   }
 
   getStaffTimeSheet(staffid:string):Promise<timesheet[]>{
-    let url='http://localhost:8080/attendance/timesheet/'+staffid;
+    //let url='http://localhost:8080/attendance/timesheet/'+staffid;
+    let url='/attendance/timesheet/'+staffid;
     return lastValueFrom(
       this.http.get<timesheet[]>(url)
     )
   }
 
   filterStaffTimeSheet(staffid:string, start:string, end:string):Promise<timesheet[]>{
-    let url='http://localhost:8080/attendance/timesheetfilter/'+staffid+'?start='+start+'&end='+end;
+    //let url='http://localhost:8080/attendance/timesheetfilter/'+staffid+'?start='+start+'&end='+end;
+    let url='/attendance/timesheetfilter/'+staffid+'?start='+start+'&end='+end;
     return lastValueFrom(
       this.http.get<timesheet[]>(url)
     )
   }
 
   removeStaff(staffid:string){
-    let url='http://localhost:8080/attendance/remove/';
+    //let url='http://localhost:8080/attendance/remove/';
+    let url='/attendance/remove/';
     return lastValueFrom(
       this.http.post<string>((url),staffid)
     )
   }
 
   authenticator(admin:adminuser){
-    let url='http://localhost:8080/attendance/auth/';
+    //let url='http://localhost:8080/attendance/auth/';
+    let url='/attendance/auth/';
     return lastValueFrom(
       this.http.post<any>((url),admin)
     )
@@ -94,14 +101,15 @@ export class AttendService {
   }
 
   ContactSupport(contactsupport:any){
-    return lastValueFrom(this.http.post('http://localhost:8080/attendance/contactus', contactsupport))
+    //return lastValueFrom(this.http.post('http://localhost:8080/attendance/contactus', contactsupport))
+    return lastValueFrom(this.http.post('/attendance/contactus', contactsupport))
   }
 
   getTenYearYield():any{
     return lastValueFrom(
-      this.http.get<any>("http://localhost:8080/attendance/getInterest")
+      //this.http.get<any>("http://localhost:8080/attendance/getInterest")
+      this.http.get<any>("/attendance/getInterest")
     )
   }
-
 
 }
