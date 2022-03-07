@@ -105,7 +105,8 @@ public class AttendanceService {
         String url=UriComponentsBuilder.
         fromUriString(urlinput).
         queryParam("function", "TREASURY_YIELD").
-        queryParam("interval", "DAILY").
+        queryParam("interval", "daily").
+        queryParam("maturity", "10year").
 		queryParam("apikey", "QXSMR1LEDWTJS0YR").
         toUriString(); 
 		
